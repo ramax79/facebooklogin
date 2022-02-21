@@ -20,10 +20,6 @@ export default function App() {
       } = await Facebook.logInWithReadPermissionsAsync({
         permissions: ['public_profile', 'email'],
       })
-      console.log('type ', type)
-      console.log('token ', token)
-      // console.log('permissions ', permissions)
-
       if (type === 'success') {
         // Get the user's name using Facebook's Graph API
         const uri = `https://graph.facebook.com/me?access_token=${token}`
@@ -31,10 +27,8 @@ export default function App() {
         const response = await fetch(
           `https://graph.facebook.com/me?access_token=${token}`
         )
-        const name = await response.json()
-        console.log(`response name , ${name.name}`)
-        alert(`Logged in! Hi ${name.name}`)
-        // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`)
+        const name = await response.json()       
+        alert(`Logged in! Hi ${name.name}`)        
       } else {
         // type === 'cancel'
       }
